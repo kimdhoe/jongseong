@@ -2,7 +2,7 @@
   "name": "jongseong",
   "version": "0.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc mocha src/index.test.js",
     "prebuild": "rimraf dist",
@@ -10,6 +10,9 @@
   },
   "author": "Kim Donghee <kimdhoe1@gmail.com>",
   "license": "ISC",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-plugin-istanbul": "^3.1.2",
