@@ -1,12 +1,16 @@
 {
   "name": "jongseong",
   "version": "0.0.0",
-  "description": "",
+  "description": "Hangul jongseong checker",
   "main": "dist/index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc mocha src/index.test.js",
     "prebuild": "rimraf dist",
-    "build": "babel --out-dir dist --ignore *.test.js src"
+    "build": "npm-run-all --parallel build:*",
+    "build:main": "babel --out-dir dist --ignore *.test.js src",
+    "build:umd": "webpack --output-filename index.umd.js",
+    "build:umd.min": "webpack --output-filename index.umd.min.js -p",
+    "validate": "npm-run-all --parallel test build"
   },
   "author": "Kim Donghee <kimdhoe1@gmail.com>",
   "license": "ISC",
@@ -15,12 +19,14 @@
   ],
   "devDependencies": {
     "babel-cli": "^6.22.2",
+    "babel-loader": "^6.2.10",
     "babel-plugin-istanbul": "^3.1.2",
     "babel-preset-es2015": "^6.22.0",
     "babel-register": "^6.22.0",
     "chai": "^3.5.0",
     "cross-env": "^3.1.4",
     "mocha": "^3.2.0",
+    "npm-run-all": "^4.0.1",
     "nyc": "^10.1.2",
     "webpack": "^1.14.0"
   },
