@@ -10,7 +10,8 @@
     "build:main": "babel --out-dir dist --ignore *.test.js src",
     "build:umd": "webpack --output-filename index.umd.js",
     "build:umd.min": "webpack --output-filename index.umd.min.js -p",
-    "validate": "npm-run-all --parallel test build"
+    "lint": "standard src/**/*.js",
+    "validate": "npm-run-all --parallel lint test build"
   },
   "author": "Kim Donghee <kimdhoe1@gmail.com>",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "mocha": "^3.2.0",
     "npm-run-all": "^4.0.1",
     "nyc": "^10.1.2",
+    "standard": "^8.6.0",
     "webpack": "^1.14.0"
   },
   "babel": {

@@ -56,18 +56,23 @@ const jongseongHangul = h =>
 const jongseongZeros = zs => {
   const n = zs.length
 
-  if (n === 1)
+  if (n === 1) {
     return 17
-  if (n === 2 || (8 <= n && n <= 11))
+  }
+  if (n === 2 || (n >= 8 && n <= 11)) {
     return 1
-  if (3 <= n && n <= 7)
+  }
+  if (n >= 3 && n <= 7) {
     return 4
-  if ((12 <= n && n <= 15) || (20 <= n && n <= 23))
+  }
+  if ((n >= 12 && n <= 15) || (n >= 20 && n <= 23)) {
     return 0
-  if (16 <= n && n <= 19)
+  }
+  if (n >= 16 && n <= 19) {
     return 21
+  }
 
-  throw new Error('It\'s too large.')
+  throw new Error("It's too large.")
 }
 
 // jongseongDigit :: string -> JongseongCode
@@ -80,17 +85,17 @@ const jongseongDigit = d =>
 // Given a two-letter English string, returns its jongseong code.
 // Assume e is a two-letter English string.
 const jongseongEnglish = e =>
-  /ck/i.test(e) ?  1 :
-  /.n/i.test(e) ?  4 :
-  /ne/i.test(e) ?  4 :
-  /.l/i.test(e) ?  8 :
-  /le/i.test(e) ?  8 :
-  /.m/i.test(e) ? 16 :
-  /ob/i.test(e) ? 17 :
-  /.p/i.test(e) ? 17 :
-  /et/i.test(e) ? 19 :
-  /ng/i.test(e) ? 21 :
-  /* else */       0
+    /ck/i.test(e) ? 1
+  : /.n/i.test(e) ? 4
+  : /ne/i.test(e) ? 4
+  : /.l/i.test(e) ? 8
+  : /le/i.test(e) ? 8
+  : /.m/i.test(e) ? 16
+  : /ob/i.test(e) ? 17
+  : /.p/i.test(e) ? 17
+  : /et/i.test(e) ? 19
+  : /ng/i.test(e) ? 21
+  : /* else      */ 0
 
 // jongseongEnglishInitial : string -> JongseongCode
 // Given an English letter, returns its jongseong code.
@@ -98,10 +103,14 @@ const jongseongEnglish = e =>
 const jongseongEnglishInitial = e => {
   switch (e.toLowerCase()) {
     case 'l':
-    case 'r': return  8
-    case 'm': return 16
-    case 'n': return  4
-    default:  return  0
+    case 'r':
+      return 8
+    case 'm':
+      return 16
+    case 'n':
+      return 4
+    default:
+      return 0
   }
 }
 
@@ -109,16 +118,18 @@ const jongseongEnglishInitial = e => {
 // Computes the jongseong code of a given string.
 // If there isn't any recognizable letter in word, returns 0 (no jongseong).
 const jongseong = word => {
-  if (!word)
+  if (!word) {
     return 0
+  }
 
   // !!!
   // Ignore letters inside parentheses.
-  const w    = word.replace(/\([^)]*\)$/, '')
+  const w = word.replace(/\([^)]*\)$/, '')
   const last = w[w.length - 1]
 
-  if (/[가-힣]/.test(last))
+  if (/[가-힣]/.test(last)) {
     return jongseongHangul(last)
+  }
 
   if (/[1-9]0+$/.test(w)) {
     const zerosMatch = /0+$/.exec(w)
@@ -126,17 +137,21 @@ const jongseong = word => {
     return jongseongZeros(zerosMatch[0])
   }
 
-  if (/\d/.test(last))
+  if (/\d/.test(last)) {
     return jongseongDigit(last)
+  }
 
-  if (/[a-z]{2}$/i.test(w))
+  if (/[a-z]{2}$/i.test(w)) {
     return jongseongEnglish(w.slice(w.length - 2, w.length))
+  }
 
-  if (/(?:^|[^a-z])[a-z]$/i.test(w))
+  if (/(?:^|[^a-z])[a-z]$/i.test(w)) {
     return jongseongEnglishInitial(last)
+  }
 
-  if (/(^|[^a-z])[a-z][^a-z]?$/i.test(w))
+  if (/(^|[^a-z])[a-z][^a-z]?$/i.test(w)) {
     return jongseongEnglishInitial(w[w.length - 2])
+  }
 
   return jongseong(w.slice(0, w.length - 1))
 }
@@ -146,11 +161,12 @@ const jongseong = word => {
 const hasJongseong = w =>
   jongseong(w) !== 0
 
-module.exports = { jongseongHangul
-                 , jongseongZeros
-                 , jongseongDigit
-                 , jongseongEnglish
-                 , jongseongEnglishInitial
-                 , jongseong
-                 , hasJongseong
-                 }
+module.exports = {
+  jongseongHangul,
+  jongseongZeros,
+  jongseongDigit,
+  jongseongEnglish,
+  jongseongEnglishInitial,
+  jongseong,
+  hasJongseong
+}
