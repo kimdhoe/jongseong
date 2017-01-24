@@ -1,9 +1,10 @@
 {
   "name": "jongseong",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "Hangul jongseong checker",
   "main": "dist/index.js",
   "scripts": {
+    "commit": "git-cz",
     "test": "cross-env NODE_ENV=test nyc mocha src/index.test.js",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "prebuild": "rimraf dist",
@@ -12,7 +13,8 @@
     "build:umd": "webpack --output-filename index.umd.js",
     "build:umd.min": "webpack --output-filename index.umd.min.js -p",
     "lint": "standard src/**/*.js",
-    "validate": "npm-run-all --parallel lint test build"
+    "validate": "npm-run-all --parallel lint test build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "Kim Donghee <kimdhoe1@gmail.com>",
   "license": "ISC",
@@ -27,11 +29,16 @@
     "babel-register": "^6.22.0",
     "chai": "^3.5.0",
     "codecov": "^1.0.1",
+    "commitizen": "^2.9.5",
     "cross-env": "^3.1.4",
+    "cz-conventional-changelog": "^1.2.0",
+    "ghooks": "^2.0.0",
     "mocha": "^3.2.0",
     "npm-run-all": "^4.0.1",
     "nyc": "^10.1.2",
+    "semantic-release": "^6.3.2",
     "standard": "^8.6.0",
+    "validate-commit-msg": "^2.10.1",
     "webpack": "^1.14.0"
   },
   "babel": {
@@ -65,5 +72,18 @@
     "require": [
       "babel-register"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kimdhoe/jongseong.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    },
+    "ghooks": {
+      "pre-commit": "npm run validate",
+      "commit-msg": "validate-commit-msg"
+    }
   }
 }
