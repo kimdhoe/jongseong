@@ -1,10 +1,13 @@
 # 종성 Jongseong
 
+[![Travis](https://img.shields.io/travis/kimdhoe/jongseong.svg)]()
+[![Codecov](https://img.shields.io/codecov/c/github/kimdhoe/jongseong.svg)]()
+
 한글 글자의 받침을 확인합니다.
 
 ```js
 hasJongseong('커피')  // => false
-hasJongseong('책')    // => true
+hasJongseong('코딩')  // => true
 ```
 
 ```js
