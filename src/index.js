@@ -122,8 +122,7 @@ const code = word => {
     return 0
   }
 
-  // !!!
-  // Ignore letters inside parentheses.
+  // !!! Ignore letters inside parentheses.
   const w = word.replace(/\([^)]*\)$/, '')
   const last = w[w.length - 1]
 
