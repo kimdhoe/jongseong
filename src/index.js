@@ -97,7 +97,7 @@ const _codeForEnglish = e =>
   : /ng/i.test(e) ? 21
   : /* else      */ 0
 
-// _codeForEnglishInitial : string -> JongseongCode
+// _codeForEnglishInitial :: string -> JongseongCode
 // Given an English letter, returns its jongseong code.
 // Assume e is a single-letter English string.
 const _codeForEnglishInitial = e => {
@@ -114,7 +114,7 @@ const _codeForEnglishInitial = e => {
   }
 }
 
-// code : string -> JongseongCode
+// code :: string -> JongseongCode
 // Computes the jongseong code of a given string.
 // If there isn't any recognizable letter in word, returns 0 (no jongseong).
 const code = word => {
@@ -156,7 +156,7 @@ const code = word => {
   return code(w.slice(0, w.length - 1))
 }
 
-// hasJongseong : string -> boolean
+// hasJongseong :: string -> boolean
 // Does the last letter of a given word have a jongseong?
 const hasJongseong = w =>
   code(w) !== 0
