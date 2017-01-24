@@ -1,5 +1,5 @@
 // A JongseongCode is an integer[0, 27].
-//   - There are 27 possible jongseong.
+//   - There are 27 possible jongseongs.
 //     code  |  e.g.
 //    -------+------
 //       0   |   가
@@ -31,17 +31,17 @@
 //      26   |   갚
 //      27   |   갛
 
-// jongseongHangul :: string -> JongseongCode
+// _codeForHangul :: string -> JongseongCode
 // Given a Hangul letter, computes its jongseong code.
 // Assume h is a single letter Hangul string (가-힣).
 //   - 44032 (AC00) is the code point of 가, which is the first Hangul letter.
 //   - 28 = the number of the jongseongs + 1
-const jongseongHangul = h =>
+const _codeForHangul = h =>
   (h.charCodeAt(0) - 44032) % 28
 
-// jongseong :: string -> JongseongCode
+// code :: string -> JongseongCode
 // Given a string of zeros, returns its jongseong code.
-// e.g. jongseongZeros('00') === 1    (100 = 백)
+// e.g. _codeForZeros('00') === 1    (100 = 백)
 //   the number |
 //   of zeros   |
 //   -----------+-------
@@ -53,7 +53,7 @@ const jongseongHangul = h =>
 //    12 ~ 15   |  조
 //    16 ~ 19   |  경
 //    20 ~ 23   |  해
-const jongseongZeros = zs => {
+const _codeForZeros = zs => {
   const n = zs.length
 
   if (n === 1) {
@@ -75,16 +75,16 @@ const jongseongZeros = zs => {
   throw new Error("It's too large.")
 }
 
-// jongseongDigit :: string -> JongseongCode
+// _codeForDigit :: string -> JongseongCode
 // Given a digit, returns its jongseong code.
 // Assume d is one of: '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
-const jongseongDigit = d =>
+const _codeForDigit = d =>
   [21, 8, 0, 16, 0, 0, 1, 8, 8, 0][d]
 
-// jongseongEnglish :: string -> JongseongCode
+// _codeForEnglish :: string -> JongseongCode
 // Given a two-letter English string, returns its jongseong code.
 // Assume e is a two-letter English string.
-const jongseongEnglish = e =>
+const _codeForEnglish = e =>
     /ck/i.test(e) ? 1
   : /.n/i.test(e) ? 4
   : /ne/i.test(e) ? 4
@@ -97,10 +97,10 @@ const jongseongEnglish = e =>
   : /ng/i.test(e) ? 21
   : /* else      */ 0
 
-// jongseongEnglishInitial : string -> JongseongCode
+// _codeForEnglishInitial : string -> JongseongCode
 // Given an English letter, returns its jongseong code.
 // Assume e is a single-letter English string.
-const jongseongEnglishInitial = e => {
+const _codeForEnglishInitial = e => {
   switch (e.toLowerCase()) {
     case 'l':
     case 'r':
@@ -114,10 +114,10 @@ const jongseongEnglishInitial = e => {
   }
 }
 
-// jongseong : string -> JongseongCode
+// code : string -> JongseongCode
 // Computes the jongseong code of a given string.
 // If there isn't any recognizable letter in word, returns 0 (no jongseong).
-const jongseong = word => {
+const code = word => {
   if (!word) {
     return 0
   }
@@ -128,45 +128,45 @@ const jongseong = word => {
   const last = w[w.length - 1]
 
   if (/[가-힣]/.test(last)) {
-    return jongseongHangul(last)
+    return _codeForHangul(last)
   }
 
   if (/[1-9]0+$/.test(w)) {
     const zerosMatch = /0+$/.exec(w)
 
-    return jongseongZeros(zerosMatch[0])
+    return _codeForZeros(zerosMatch[0])
   }
 
   if (/\d/.test(last)) {
-    return jongseongDigit(last)
+    return _codeForDigit(last)
   }
 
   if (/[a-z]{2}$/i.test(w)) {
-    return jongseongEnglish(w.slice(w.length - 2, w.length))
+    return _codeForEnglish(w.slice(w.length - 2, w.length))
   }
 
   if (/(?:^|[^a-z])[a-z]$/i.test(w)) {
-    return jongseongEnglishInitial(last)
+    return _codeForEnglishInitial(last)
   }
 
   if (/(^|[^a-z])[a-z][^a-z]?$/i.test(w)) {
-    return jongseongEnglishInitial(w[w.length - 2])
+    return _codeForEnglishInitial(w[w.length - 2])
   }
 
-  return jongseong(w.slice(0, w.length - 1))
+  return code(w.slice(0, w.length - 1))
 }
 
 // hasJongseong : string -> boolean
 // Does the last letter of a given word have a jongseong?
 const hasJongseong = w =>
-  jongseong(w) !== 0
+  code(w) !== 0
 
 module.exports = {
-  jongseongHangul,
-  jongseongZeros,
-  jongseongDigit,
-  jongseongEnglish,
-  jongseongEnglishInitial,
-  jongseong,
+  _codeForHangul,
+  _codeForZeros,
+  _codeForDigit,
+  _codeForEnglish,
+  _codeForEnglishInitial,
+  code,
   hasJongseong
 }
