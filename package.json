@@ -17,7 +17,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "Kim Donghee <kimdhoe1@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "files": [
     "dist"
   ],
