@@ -1,5 +1,5 @@
-// A JongseongCode is an integer[0, 27].
-//   - There are 27 possible jongseongs.
+// A JongseongCode is an integer[0...27].
+//   - Each code represents a tail consonants.
 //     code  |  e.g.
 //    -------+------
 //       0   |   가
