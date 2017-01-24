@@ -2,7 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/kimdhoe/jongseong.svg)](https://travis-ci.org/kimdhoe/jongseong)
 [![Codecov](https://img.shields.io/codecov/c/github/kimdhoe/jongseong.svg)](https://codecov.io/gh/kimdhoe/jongseong)
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/jongseong)
+[![npm](https://img.shields.io/npm/v/jongseong.svg)](https://www.npmjs.com/package/jongseong)
 [![license](https://img.shields.io/github/license/kimdhoe/jongseong.svg)](https://github.com/kimdhoe/jongseong/blob/master/LICENSE.md)
 [![Standard - JavaScript Style
 Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
