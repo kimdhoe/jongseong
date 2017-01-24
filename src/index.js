@@ -39,7 +39,7 @@
 const _codeForHangul = h =>
   (h.charCodeAt(0) - 44032) % 28
 
-// code :: string -> JongseongCode
+// _codeForZeros :: string -> JongseongCode
 // Given a string of zeros, returns its jongseong code.
 // e.g. _codeForZeros('00') === 1    (100 = 백)
 //   the number |
