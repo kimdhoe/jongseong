@@ -1,7 +1,7 @@
 # 종성 Jongseong
 
-[![Travis](https://img.shields.io/travis/kimdhoe/jongseong.svg)]()
-[![Codecov](https://img.shields.io/codecov/c/github/kimdhoe/jongseong.svg)]()
+[![Travis](https://img.shields.io/travis/kimdhoe/jongseong.svg)](https://travis-ci.org/kimdhoe/jongseong)
+[![Codecov](https://img.shields.io/codecov/c/github/kimdhoe/jongseong.svg)](https://codecov.io/gh/kimdhoe/jongseong)
 
 한글 글자의 받침을 확인합니다.
 
