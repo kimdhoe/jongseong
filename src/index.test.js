@@ -12,8 +12,32 @@ import {
   hasJongseong
 } from './index'
 
+// range :; number * number -> Array<number>
+// Produces an array of integers between from and to (inclusive).
+const range = (from, to) => {
+  const arr = []
+
+  for (let i = from; i < to; i++) {
+    arr.push(i)
+  }
+
+  return arr
+}
+
 describe('_codeForHangul()', () => {
   it('computes the jongseong code of a Hangul letter', () => {
+    // GA_TO_GAH :: Array<string>
+    // [ '가'...'갛' ]
+    const GA_TO_GAH = range(44032, 44059).map(String.fromCharCode)
+    // ZERO_TO_TWENTYSEVEN :: Array<number>
+    // [ 0...27 ]
+    const ZERO_TO_TWENTYSEVEN = range(0, 27)
+
+    assert.deepEqual(
+      GA_TO_GAH.map(_codeForHangul),
+      ZERO_TO_TWENTYSEVEN
+    )
+
     assert.equal(_codeForHangul('가'), 0)
     assert.equal(_codeForHangul('납'), 17)
     assert.equal(_codeForHangul('닿'), 27)
