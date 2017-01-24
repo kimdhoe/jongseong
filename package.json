@@ -1,6 +1,6 @@
 {
   "name": "jongseong",
-  "version": "0.0.0-development",
+  "version": "0.2.0-development",
   "description": "Hangul jongseong checker",
   "main": "dist/index.js",
   "scripts": {
