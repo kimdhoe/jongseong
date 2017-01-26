@@ -31,8 +31,8 @@ const { code, hasJongseong } = require('jongseong')
 
 #### word
 
-_Required_
-Type: `string`
+- _Required_
+- Type: `string`
 
 ```js
 code('가나다')  // =>  0
@@ -50,8 +50,8 @@ code('100')  // =>  1  (백)
 
 #### word
 
-_Required_
-Type: `string`
+- _Required_
+- Type: `string`
 
 ```js
 hasJongseong('커피')  // => false
